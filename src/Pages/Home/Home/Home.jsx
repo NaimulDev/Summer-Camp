@@ -1,7 +1,11 @@
+import Banner from "../Banner/Banner";
+import SectionOne from "../SectionOne/SectionOne";
+
 const Home = () => {
   return (
-    <div>
-      <h1>Cooming Soon</h1>
+    <div className=" bg-[#bae7ff]">
+      <Banner />
+      <SectionOne />
     </div>
   );
 };

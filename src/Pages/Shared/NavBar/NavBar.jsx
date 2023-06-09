@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
-import logo from "../../../../public/logo.png";
+import logo from "../../../assets/icons/logo.png";
 import { AuthContext } from "../../../Providers/AuthProvider";
 
 function NavBar() {
@@ -18,7 +18,10 @@ function NavBar() {
   return (
     <div className="">
       <div className="relative ">
-        <div className="bg-[#09ccd0] text-white  flex items-center justify-between py-2">
+        <div className="bg-[#09ccd0] px-14 text-white  flex items-center justify-between py-2">
+          <Link to="/">
+            <img src={logo} alt="" className="w-44" />
+          </Link>
           <ul className="nav-ul items-center hidden  lg:flex font-bold md:mx-20">
             <li>
               <NavLink
@@ -53,8 +56,7 @@ function NavBar() {
                 Classes
               </NavLink>
             </li>
-
-            <li className="flex ">
+            <li className="flex items-center">
               {user ? (
                 <>
                   <NavLink
@@ -69,14 +71,7 @@ function NavBar() {
                     Dashboard
                   </NavLink>
 
-                  <button id="nav" className="" onClick={handleLogOut}>
-                    Logout
-                  </button>
-                  <div className=" flex ml-60">
-                    <p className="bg-secondary rounded-2xl py-2 px-3 mr-4">
-                      {user?.email}
-                    </p>
-
+                  <div className=" flex ml-96">
                     <div className="avatar cursor-pointer">
                       <div
                         className="w-10 h-10 rounded-full relative ring ring-primary ring-offset-base-100 ring-offset-2"
@@ -92,6 +87,9 @@ function NavBar() {
                       </div>
                     </div>
                   </div>
+                  <button id="nav" className="-mr-16" onClick={handleLogOut}>
+                    Logout
+                  </button>
                 </>
               ) : (
                 <NavLink
