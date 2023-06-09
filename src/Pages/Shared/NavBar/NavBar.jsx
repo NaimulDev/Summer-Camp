@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 import logo from "../../../assets/icons/logo.png";
 import { AuthContext } from "../../../Providers/AuthProvider";
+import DarkLight from "../../Home/DarkLight/DarkLight";
 
 function NavBar() {
   const { user, logOut } = useContext(AuthContext);
@@ -56,6 +57,9 @@ function NavBar() {
                 Classes
               </NavLink>
             </li>
+            <li className="">
+              <DarkLight />
+            </li>
             <li className="flex items-center">
               {user ? (
                 <>
@@ -71,7 +75,7 @@ function NavBar() {
                     Dashboard
                   </NavLink>
 
-                  <div className=" flex ml-96">
+                  <div className=" flex ml-28">
                     <div className="avatar cursor-pointer">
                       <div
                         className="w-10 h-10 rounded-full relative ring ring-primary ring-offset-base-100 ring-offset-2"
