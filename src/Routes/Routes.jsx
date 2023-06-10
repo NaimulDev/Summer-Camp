@@ -4,6 +4,8 @@ import Home from "../Pages/Home/Home/Home";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Signup from "../Pages/Signup/Signup";
 import Login from "../Pages/Login/Login";
+import PopularClasses from "../Pages/Home/PopularClasses/PopularClasses";
+import PopularInstructors from "../Pages/Home/PopularInstructors/PopularInstructors";
 
 export const router = createBrowserRouter([
   {
@@ -17,14 +19,14 @@ export const router = createBrowserRouter([
       },
       {
         path: "/instructors",
-        element: <Home></Home>,
+        element: <PopularInstructors />,
       },
       {
         path: "/classes",
-        element: <Home></Home>,
+        element: <PopularClasses />,
       },
       {
-        path: "/Dashboard ",
+        path: "/Dashboard",
         element: <Home></Home>,
       },
       {
