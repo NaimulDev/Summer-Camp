@@ -48,13 +48,13 @@ const Signup = () => {
               if (data.insertedId) {
                 reset();
                 // toast.success("Successfully toasted!");
-                // Swal.fire({
-                //   position: "top-end",
-                //   icon: "success",
-                //   title: "User created successfully.",
-                //   showConfirmButton: false,
-                //   timer: 1500,
-                // });
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "User created successfully.",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
                 navigate("/");
               }
             });

@@ -2,7 +2,7 @@ import React from "react";
 import "./SectionOne.css";
 
 const SectionOne = () => {
-  return <div className=" h-48"></div>;
+  return <div className="bg-[#bae7ff] h-48 "></div>;
 };
 
 export default SectionOne;

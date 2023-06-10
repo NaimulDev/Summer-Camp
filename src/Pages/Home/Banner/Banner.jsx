@@ -52,7 +52,7 @@ const Banner = () => {
 
   return (
     <>
-      <div ref={sliderRef} className="keen-slider">
+      <div ref={sliderRef} className="keen-slider bg-[#bae7ff]">
         <div className="keen-slider__slide number-slide1">
           <div className="relative">
             <img src={slide1} alt="" />
@@ -62,17 +62,20 @@ const Banner = () => {
             <div className="absolute top-56 right-24">
               <img src={icon2} alt="" />
             </div>
-            <div className="absolute top-28 right-5">
-              <h1>
+            <div className="absolute top-32 right-24">
+              <h1 className="text-violet-700 text-5xl font-bold">
                 Practical teaching &
-                <br />
-                Social Development
               </h1>
-              <p>
+              <h2 className="text-orange-600 pt-5 text-5xl font-bold">
+                Social Development
+              </h2>
+              <p className="my-8 text-lg font-semibold">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Aliquam, et!
               </p>
-              <button className="btn">lorem more</button>
+              <button className="btn bg-emerald-400 px-6 py-2 rounded-3xl font-semibold text-base text-white hover:bg-rose-600">
+                lorem more
+              </button>
             </div>
           </div>
         </div>
@@ -84,14 +87,22 @@ const Banner = () => {
           <div className="absolute top-56 right-24">
             <img src={icon3} alt="" />
           </div>
-          <div className="absolute top-28 right-80">
-            <h4>Fun In School</h4>
-            <h1>Creative Learning</h1>
-            <p>a</p>
-            <p>b</p>
-            <p>c</p>
-            <p>d</p>
-            <button className="btn ">lean more</button>
+          <div className="absolute top-32 right-52">
+            <h4 className="text-2xl font-bold text-purple-800 ">
+              Fun In School
+            </h4>
+            <h1 className="text-6xl my-6 font-bold text-fuchsia-600">
+              Creative Learning
+            </h1>
+            <div className="text-black">
+              <p>Creative Lesson plans</p>
+              <p>1000+ workshets & craft sheets</p>
+              <p>Weekly Acadamic traning for kids</p>
+              <p>Universal Workshop for childrens</p>
+            </div>
+            <button className="btn mt-9 bg-emerald-400 px-6 py-2 rounded-3xl font-semibold text-base text-white hover:bg-rose-600">
+              lean more
+            </button>
           </div>
         </div>
         <div className="keen-slider__slide number-slide3">
@@ -101,14 +112,24 @@ const Banner = () => {
               <img src={icon3} alt="" />
             </div>
             <div className="absolute top-48 left-14">
-              <h1>
-                Empowering students <span>from small age</span> towards vision.
+              <h1 className="text-5xl font-bold text-sky-400">
+                Empowering students{" "}
+                <span className="text-black ">
+                  from
+                  <br />
+                  small age
+                </span>{" "}
+                <span className="text-orange-500">towards vision.</span>
               </h1>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta
-                molestias error esse eligendi repudiandae eos.
+              <p className="text-xl my-6 font-bold">
+                With the courage, Cofidence creativity and Compassion to make
+                their Unique
+                <br />
+                Contribution in a Diverse and Dynamic World.
               </p>
-              <button className="btn">Enroll Now</button>
+              <button className="btn  bg-emerald-400 px-6 py-2 rounded-3xl font-semibold text-base text-white hover:bg-rose-600">
+                Enroll Now
+              </button>
             </div>
           </div>
         </div>

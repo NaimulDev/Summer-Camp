@@ -57,9 +57,7 @@ function NavBar() {
                 Classes
               </NavLink>
             </li>
-            <li className="">
-              <DarkLight />
-            </li>
+
             <li className="flex items-center">
               {user ? (
                 <>
@@ -74,26 +72,20 @@ function NavBar() {
                   >
                     Dashboard
                   </NavLink>
-
+                  <button id="nav" className="" onClick={handleLogOut}>
+                    Logout
+                  </button>
                   <div className=" flex ml-28">
                     <div className="avatar cursor-pointer">
                       <div
-                        className="w-10 h-10 rounded-full relative ring ring-primary ring-offset-base-100 ring-offset-2"
+                        className="w-10 h-10 rounded-full  ring ring-primary ring-offset-base-100 ring-offset-2"
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                       >
                         <img src={user?.photoURL} alt="User Avatar" />
-                        {isHovered && (
-                          <span className="absolute top-1 text-xs">
-                            {user?.displayName}
-                          </span>
-                        )}
                       </div>
                     </div>
                   </div>
-                  <button id="nav" className="-mr-16" onClick={handleLogOut}>
-                    Logout
-                  </button>
                 </>
               ) : (
                 <NavLink
@@ -108,6 +100,9 @@ function NavBar() {
                   Login
                 </NavLink>
               )}
+            </li>
+            <li className="ml-8">
+              <DarkLight />
             </li>
           </ul>
         </div>

@@ -3,7 +3,7 @@ import SectionOne from "../SectionOne/SectionOne";
 
 const Home = () => {
   return (
-    <div className=" bg-[#bae7ff]">
+    <div className="">
       <Banner />
       <SectionOne />
     </div>
