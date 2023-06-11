@@ -18,7 +18,7 @@ const PopularClasses = () => {
         <h2 className=" text-5xl text-center my-10">Explore top courses</h2>
       </div>
       <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 mx-20">
-        {data.slice(0, 6).map((item) => (
+        {data.map((item) => (
           <div key={item._id} className="card w-96 glass mx-auto">
             <figure>
               <img className="" src={item.Image} alt="Class!" />

@@ -6,6 +6,7 @@ import Signup from "../Pages/Signup/Signup";
 import Login from "../Pages/Login/Login";
 import PopularClasses from "../Pages/Home/PopularClasses/PopularClasses";
 import PopularInstructors from "../Pages/Home/PopularInstructors/PopularInstructors";
+import Dashboard from "../Layout/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -25,10 +26,7 @@ export const router = createBrowserRouter([
         path: "/classes",
         element: <PopularClasses />,
       },
-      {
-        path: "/Dashboard",
-        element: <Home></Home>,
-      },
+
       {
         path: "/signup",
         element: <Signup />,
@@ -37,6 +35,38 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+    ],
+  },
+
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      // {
+      //   path: 'mycart',
+      //   element: <MyCart></MyCart>
+      // },
+      // {
+      //   path:'payment',
+      //   element: <Payment></Payment>
+      // },
+      // admin routes
+      // {
+      //   path: 'adminhome',
+      //   element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+      // },
+      // {
+      //   path: 'allusers',
+      //   element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+      // },
+      // {
+      //   path: 'addItem',
+      //   element: <AdminRoute><AddItem></AddItem></AdminRoute>
+      // },
+      // {
+      //   path: 'manageitems',
+      //   element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
+      // }
     ],
   },
 ]);

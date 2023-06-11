@@ -9,7 +9,6 @@ import DarkLight from "../../Home/DarkLight/DarkLight";
 function NavBar() {
   const { user, logOut } = useContext(AuthContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
 
   const handleLogOut = () => {
     logOut()
@@ -77,11 +76,7 @@ function NavBar() {
                   </button>
                   <div className=" flex ml-28">
                     <div className="avatar cursor-pointer">
-                      <div
-                        className="w-10 h-10 rounded-full  ring ring-primary ring-offset-base-100 ring-offset-2"
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
-                      >
+                      <div className="w-10 h-10 rounded-full  ring ring-primary ring-offset-base-100 ring-offset-2">
                         <img src={user?.photoURL} alt="User Avatar" />
                       </div>
                     </div>
