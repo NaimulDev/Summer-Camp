@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import PopularClasses from "../Pages/Home/PopularClasses/PopularClasses";
 import PopularInstructors from "../Pages/Home/PopularInstructors/PopularInstructors";
 import Dashboard from "../Layout/Dashboard";
+import AddClasses from "../Pages/Home/DashboardPages/IsInstractorPanel/AddClasses";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard></Dashboard>,
     children: [
+      {
+        path: "addclass",
+        element: <AddClasses />,
+      },
       // {
       //   path: 'mycart',
       //   element: <MyCart></MyCart>

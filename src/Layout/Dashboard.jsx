@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import {
   // FaShoppingCart,
   FaWallet,
@@ -9,8 +9,9 @@ import {
   // FaUsers,
 } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
-import IsUser from "../Pages/Sidebar/IsUser";
+// import IsUser from "../Pages/Sidebar/IsUser";
 import IsAdmin from "../Pages/Sidebar/IsAdmin";
+import IsInstractors from "../Pages/Sidebar/IsInstractors";
 // import useCart from "../hooks/useCart";
 // import useAdmin from "../hooks/useAdmin.jsx";
 
@@ -37,7 +38,7 @@ const Dashboard = () => {
       <div className="drawer-side bg-[#bae7ff]">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 w-80">
-          {isAdmin ? <IsUser /> : <IsAdmin />}
+          {isAdmin ? <IsInstractors /> : <IsAdmin />}
           <div className="divider"></div>
         </ul>
       </div>
