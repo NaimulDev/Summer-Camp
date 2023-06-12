@@ -4,6 +4,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 // import { Toaster, toast } from "react-hot-toast";
 import { AuthContext } from "../../Providers/AuthProvider";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import axios from "axios";
+import Swal from "sweetalert2";
 const Signup = () => {
   const [error, setError] = useState("");
   const {
@@ -21,119 +23,131 @@ const Signup = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
+    console.log(data);
     if (data.password !== data.confirm) {
       setError("Your password did not match");
       return;
     }
-    createUser(data.email, data.password).then((result) => {
-      const loggedUser = result.user;
-      console.log(loggedUser);
+    // form.reset();
+    // toast.success("Successfully toasted!");
+    // navigate(from, { replace: true });
+    //   const imageUrl = data.image[0];
+    //   const formData = new FormData();
+    //   formData.append('image', imageUrl)
+    //   console.log(formData);
+    //   const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_KEY}`;
 
-      // form.reset();
-      // toast.success("Successfully toasted!");
-      // navigate(from, { replace: true });
+    //   fetch(url, {
+    //     method: 'POST',
+    //     body: formData,
+    // })
+    //     .then(res => res.json())
+    //     .then(imageData => {})
+    //   createUser(data.email, data.password).then((result) => {
+    //     const loggedUser = result.user;
+    //     console.log(loggedUser);
 
-      updateUserProfile(data.name, data.photoURL)
-        .then(() => {
-          const saveUser = { name: data.name, email: data.email };
-          fetch("http://localhost:5000/users", {
-            method: "POST",
-            headers: {
-              "content-type": "application/json",
-            },
-            body: JSON.stringify(saveUser),
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.insertedId) {
-                reset();
-                // toast.success("Successfully toasted!");
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "User created successfully.",
-                  showConfirmButton: false,
-                  timer: 1500,
+    //     updateUserProfile(data.name, data.photoURL)
+    //       .then(() => {
+    //         const saveUser = { name: data.name, email: data.email };
+
+    //         fetch("http://localhost:5000/users", {
+    //           method: "POST",
+    //           headers: {
+    //             "content-type": "application/json",
+    //           },
+    //           body: JSON.stringify(saveUser),
+    //         })
+    //           .then((res) => res.json())
+    //           .then((data) => {
+    //             if (data.insertedId) {
+    //               reset();
+    //               // toast.success("Successfully toasted!");
+    //               Swal.fire({
+    //                 position: "top-end",
+    //                 icon: "success",
+    //                 title: "User created successfully.",
+    //                 showConfirmButton: false,
+    //                 timer: 1500,
+    //               });
+    //               navigate("/");
+    //             }
+    //           });
+    //       })
+    //       .catch((error) => console.log(error));
+    //   });
+    // };
+
+    const imageUrl = data.image[0];
+    console.log(imageUrl);
+    const formData = new FormData();
+    formData.append("image", imageUrl);
+    console.log(formData);
+    const url = `https://api.imgbb.com/1/upload?key=${
+      import.meta.env.VITE_IMAGE_KEY
+    }`;
+
+    fetch(url, {
+      method: "POST",
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then((imageData) => {
+        console.log(imageData);
+        const imageAdders = imageData.data.url;
+        createUser(data.email, data.password)
+          .then((result) => {
+            console.log(result);
+            updateUserProfile(data.name, imageAdders).then(() => {
+              axios
+                .post("http://localhost:5000/users", {
+                  name: data.name,
+                  email: data.email,
+                  image: imageAdders,
+                  role: data.role,
+                })
+                .then((data) => {
+                  if (data.insertedId) {
+                    Swal.fire({
+                      position: "top-center",
+                      icon: "success",
+                      title: "Your SignUp Successful",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  }
+                  navigate("/");
+                })
+                .catch((err) => {
+                  Swal.fire({
+                    position: "top-center",
+                    icon: "error",
+                    title: `${err.message}`,
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  setLoading(false);
                 });
-                navigate("/");
-              }
             });
-        })
-        .catch((error) => console.log(error));
-    });
+          })
+          .catch((error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `${error.message}`,
+            });
+            setLoading(false);
+          });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: `${error.message}`,
+        });
+        setLoading(false);
+      });
   };
-
-  // email signup
-  // const handleSignUp = (event) => {
-  //   event.preventDefault();
-  //   const form = event.target;
-  //   const name = form.name.value;
-  //   const email = form.email.value;
-  //   const photo = form.photo.value;
-  //   const password = form.password.value;
-  //   const confirm = form.confirm.value;
-  //   console.log(name, email, photo, password, confirm);
-
-  //   setError("");
-  //   if (password !== confirm) {
-  //     setError("Your password did not match");
-  //     return;
-  //   } else if (password.length < 6) {
-  //     setError("password must be 6 characters or longer");
-  //     return;
-  //   }
-
-  //   createUser(email, password).then((result) => {
-  //     const loggedUser = result.user;
-  //     console.log(loggedUser);
-
-  //     updateUserProfile(data.name, data.photoURL)
-  //       .then(() => {
-  //         const saveUser = { name: data.name, email: data.email };
-  //         fetch("http://localhost:5000/users", {
-  //           method: "POST",
-  //           headers: {
-  //             "content-type": "application/json",
-  //           },
-  //           body: JSON.stringify(saveUser),
-  //         })
-  //           .then((res) => res.json())
-  //           .then((data) => {
-  //             if (data.insertedId) {
-  //               reset();
-  //               Swal.fire({
-  //                 position: "top-end",
-  //                 icon: "success",
-  //                 title: "User created successfully.",
-  //                 showConfirmButton: false,
-  //                 timer: 1500,
-  //               });
-  //               navigate("/");
-  //             }
-  //           });
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //         setError(error.message);
-  //       });
-  //   });
-  // };
-
-  //   createUser(email, password)
-  //     .then((result) => {
-  //       const loggedUser = result.user;
-  //       console.log(loggedUser);
-  //       form.reset();
-  //       navigate(from, { replace: true });
-  //       toast.success("Successfully toasted!");
-
-  //       // alert("successfully create");
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //       setError(error.message);
-  //     });
-  // };
 
   return (
     <>
@@ -204,6 +218,7 @@ const Signup = () => {
             >
               Photo
             </label>
+
             {/* <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="photo"
@@ -213,8 +228,9 @@ const Signup = () => {
               required
             /> */}
             <input
-              type="text"
-              {...register("photoURL", { required: true })}
+              type="file"
+              {...register("image", { required: true })}
+              name="image"
               placeholder="Photo URL"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             />

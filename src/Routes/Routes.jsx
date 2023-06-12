@@ -8,6 +8,7 @@ import PopularClasses from "../Pages/Home/PopularClasses/PopularClasses";
 import PopularInstructors from "../Pages/Home/PopularInstructors/PopularInstructors";
 import Dashboard from "../Layout/Dashboard";
 import AddClasses from "../Pages/Home/DashboardPages/IsInstractorPanel/AddClasses";
+import ManageUsers from "../Pages/Home/DashboardPages/AdminPanel/ManageUsers/ManageUsers";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "addclass",
         element: <AddClasses />,
+      },
+      {
+        path: "manageusers",
+        element: <ManageUsers />,
       },
       // {
       //   path: 'mycart',

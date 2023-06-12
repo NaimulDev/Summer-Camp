@@ -10,25 +10,16 @@ const IsAdmin = () => {
           <FaHome></FaHome> Admin Home
         </NavLink>
       </li>
+
       <li>
-        <NavLink to="/dashboard/addItem">
-          {" "}
-          <FaUtensils></FaUtensils> Add an Item
+        <NavLink to="/dashboard/manageclasses">
+          <FaBook></FaBook> Manage Classes
         </NavLink>
       </li>
+
       <li>
-        <NavLink to="/dashboard/manageitems">
-          <FaWallet></FaWallet> Manage Items
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/">
-          <FaBook></FaBook> Manage Bookings(not implemented)
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/dashboard/allusers">
-          <FaUsers></FaUsers> All Users
+        <NavLink to="/dashboard/manageusers">
+          <FaUsers></FaUsers> Manage Users
         </NavLink>
       </li>
     </div>

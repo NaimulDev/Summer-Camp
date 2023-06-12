@@ -9,12 +9,12 @@ const AddClasses = () => {
     const name = form.name.value;
     const sellerName = form.sellerName.value;
     const email = form.email.value;
-    const category = form.category.value;
+
     const price = form.price.value;
-    const rating = form.rating.value;
+
     const quantity = form.quantity.value;
     const details = form.details.value;
-    const addToys = {
+    const addClass = {
       name,
       sellerName,
       email,
@@ -29,7 +29,7 @@ const AddClasses = () => {
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(addToys),
+      body: JSON.stringify(addClass),
     })
       .then((res) => res.json())
       .then((data) => {
