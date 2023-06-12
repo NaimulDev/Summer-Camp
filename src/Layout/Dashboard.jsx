@@ -1,15 +1,16 @@
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import {
   // FaShoppingCart,
   FaWallet,
   // FaCalendarAlt,
   FaHome,
   FaExternalLinkAlt,
+  FaCalendarAlt,
   // FaUtensils,
   // FaBook,
   // FaUsers,
 } from "react-icons/fa";
-import useAuth from "../hooks/useAuth";
+// import useAuth from "../hooks/useAuth";
 import IsUser from "../Pages/Sidebar/IsUser";
 import IsAdmin from "../Pages/Sidebar/IsAdmin";
 import IsInstractors from "../Pages/Sidebar/IsInstractors";
@@ -19,15 +20,14 @@ import { AuthContext } from "../Providers/AuthProvider";
 import DarkLight from "../Pages/Home/DarkLight/DarkLight";
 
 // import useCart from "../hooks/useCart";
-// import useAdmin from "../hooks/useAdmin.jsx";
 
 const Dashboard = () => {
   // const { user } = useAuth();
 
   // TODO: load data from the server to have dynamic isAdmin based on Data
-  const isAdmin = true;
-  // const [isAdmin] = useAdmin();
-  // const [isIntractor] = useInstractor();
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  const [isIntractor] = useInstractor();
   const { user, logOut } = useContext(AuthContext);
   const handleLogOut = () => {
     logOut()
@@ -61,27 +61,34 @@ const Dashboard = () => {
               <p>{user?.email}</p>
             </div>
             <div className="flex gap-5 justify-center">
-              {/* <NavLink to="/">
-            <FaHome></FaHome>
-          </NavLink>
-          <FaCalendarAlt></FaCalendarAlt>
-          <FaWallet></FaWallet> */}
+              <NavLink to="/">
+                <FaHome></FaHome>
+              </NavLink>
+              <FaCalendarAlt></FaCalendarAlt>
+              <FaWallet></FaWallet>
             </div>
           </div>
           <hr className="my-5 " />
         </label>
         <ul className="menu p-4 w-80">
-          {isAdmin ? <IsAdmin /> : <IsUser />}
-          {/* {isIntractor ? <IsInstractors /> : <IsUser />} */}
+          {isAdmin ? (
+            <IsAdmin />
+          ) : (
+            <>{isIntractor ? <IsInstractors /> : <IsUser />}</>
+          )}
+
           <div className="divider"></div>
         </ul>
-        <hr className="my-5 " />
+        <hr className="my-5" />
 
         <li className="ml-24">
           <DarkLight />
         </li>
         <li>
-          <button className="mt-6 ml-14" onClick={handleLogOut}>
+          <button
+            className="mt-6 ml-14  gap-4 inline-flex"
+            onClick={handleLogOut}
+          >
             <FaExternalLinkAlt></FaExternalLinkAlt> Logout
           </button>
         </li>

@@ -21,7 +21,7 @@ export const useInstractor = () => {
   const { user, loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
   // use axios secure with react query
-  const { data: isInstractor, isLoading: isAdminLoading } = useQuery({
+  const { data: isInstractor, isLoading: isInsLoading } = useQuery({
     queryKey: ["isInstractor", user?.email],
     enabled: !loading,
     queryFn: async () => {
@@ -29,5 +29,5 @@ export const useInstractor = () => {
       return res.data.instractor;
     },
   });
-  return [isAdmin, isAdminLoading];
+  return [isInstractor, isInsLoading];
 };
