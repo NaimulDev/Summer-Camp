@@ -9,6 +9,7 @@ import PopularInstructors from "../Pages/Home/PopularInstructors/PopularInstruct
 import Dashboard from "../Layout/Dashboard";
 import AddClasses from "../Pages/Home/DashboardPages/IsInstractorPanel/AddClasses";
 import ManageUsers from "../Pages/Home/DashboardPages/AdminPanel/ManageUsers/ManageUsers";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -50,7 +51,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "manageusers",
-        element: <ManageUsers />,
+        element: (
+          <AdminRoute>
+            <ManageUsers />
+          </AdminRoute>
+        ),
       },
       // {
       //   path: 'mycart',

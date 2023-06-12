@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-// import { Toaster, toast } from "react-hot-toast";
+
 import { AuthContext } from "../../Providers/AuthProvider";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 import axios from "axios";
@@ -23,66 +23,16 @@ const Signup = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) => {
-    console.log(data);
     if (data.password !== data.confirm) {
       setError("Your password did not match");
       return;
     }
-    // form.reset();
-    // toast.success("Successfully toasted!");
-    // navigate(from, { replace: true });
-    //   const imageUrl = data.image[0];
-    //   const formData = new FormData();
-    //   formData.append('image', imageUrl)
-    //   console.log(formData);
-    //   const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_IMAGE_KEY}`;
-
-    //   fetch(url, {
-    //     method: 'POST',
-    //     body: formData,
-    // })
-    //     .then(res => res.json())
-    //     .then(imageData => {})
-    //   createUser(data.email, data.password).then((result) => {
-    //     const loggedUser = result.user;
-    //     console.log(loggedUser);
-
-    //     updateUserProfile(data.name, data.photoURL)
-    //       .then(() => {
-    //         const saveUser = { name: data.name, email: data.email };
-
-    //         fetch("http://localhost:5000/users", {
-    //           method: "POST",
-    //           headers: {
-    //             "content-type": "application/json",
-    //           },
-    //           body: JSON.stringify(saveUser),
-    //         })
-    //           .then((res) => res.json())
-    //           .then((data) => {
-    //             if (data.insertedId) {
-    //               reset();
-    //               // toast.success("Successfully toasted!");
-    //               Swal.fire({
-    //                 position: "top-end",
-    //                 icon: "success",
-    //                 title: "User created successfully.",
-    //                 showConfirmButton: false,
-    //                 timer: 1500,
-    //               });
-    //               navigate("/");
-    //             }
-    //           });
-    //       })
-    //       .catch((error) => console.log(error));
-    //   });
-    // };
 
     const imageUrl = data.image[0];
-    console.log(imageUrl);
+
     const formData = new FormData();
     formData.append("image", imageUrl);
-    console.log(formData);
+
     const url = `https://api.imgbb.com/1/upload?key=${
       import.meta.env.VITE_IMAGE_KEY
     }`;
@@ -93,11 +43,9 @@ const Signup = () => {
     })
       .then((res) => res.json())
       .then((imageData) => {
-        console.log(imageData);
         const imageAdders = imageData.data.url;
         createUser(data.email, data.password)
           .then((result) => {
-            console.log(result);
             updateUserProfile(data.name, imageAdders).then(() => {
               axios
                 .post("http://localhost:5000/users", {
@@ -166,14 +114,7 @@ const Signup = () => {
             >
               Name
             </label>
-            {/* <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="name"
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              required
-            /> */}
+
             <input
               type="text"
               {...register("name", { required: true })}
@@ -192,14 +133,7 @@ const Signup = () => {
             >
               Email
             </label>
-            {/* <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              type="email"
-              placeholder="Email"
-              name="email"
-              required
-            /> */}
+
             <input
               type="email"
               {...register("email", { required: true })}
@@ -219,14 +153,6 @@ const Signup = () => {
               Photo
             </label>
 
-            {/* <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="photo"
-              type="text"
-              placeholder="Photo Url"
-              name="photo"
-              required
-            /> */}
             <input
               type="file"
               {...register("image", { required: true })}
@@ -245,14 +171,7 @@ const Signup = () => {
             >
               Password
             </label>
-            {/* <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              type={show ? "text" : "password"}
-              name="password"
-              placeholder="Password"
-              required
-            /> */}
+
             <input
               type={show ? "text" : "password"}
               {...register("password", {
@@ -274,14 +193,7 @@ const Signup = () => {
             >
               Confirm Password
             </label>
-            {/* <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="confirm-password"
-              type={show ? "text" : "password"}
-              name="confirm"
-              placeholder="Confirm Password"
-              required
-            /> */}
+
             <input
               type={show ? "text" : "password"}
               id="confirm"
@@ -318,8 +230,6 @@ const Signup = () => {
           </div>
           <div className="text-center">
             <input className="btn btn-primary" type="submit" value="Sign Up" />
-
-            {/* <Toaster /> */}
           </div>
         </form>
 
