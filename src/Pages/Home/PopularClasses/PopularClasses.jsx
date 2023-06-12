@@ -1,9 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaAtlas, FaRegClock, FaUserNurse, FaDollarSign } from "react-icons/fa";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { useLocation, useNavigate } from "react-router-dom";
+import useCart from "../../../hooks/useCart";
+import Swal from "sweetalert2";
 
 const PopularClasses = () => {
+  const { user } = useContext(AuthContext);
   const [data, setData] = useState([]);
-
+  const [, refetch] = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
   useEffect(() => {
     // fetch("http://localhost:5000/class")
     fetch("classes.json")
@@ -12,6 +19,54 @@ const PopularClasses = () => {
         setData(data);
       });
   }, []);
+
+  const handleAddToCart = (item) => {
+    console.log(item);
+    if (user && user.email) {
+      const { _id, Name, Image, price, AvailableSeats } = item;
+      const classItem = {
+        menuItemId: _id,
+        Name,
+        Image,
+        price,
+        AvailableSeats,
+        email: user.email,
+      };
+      fetch("http://localhost:5000/class", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(classItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            refetch(); // refetch cart to update the number of items in the cart
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Food added on the cart.",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "Please login to order the food",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login now!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
   return (
     <>
       <div>
@@ -89,7 +144,12 @@ const PopularClasses = () => {
                     {item.InstructorName}
                   </h2>
                 </div>
-                <button className="btn btn-primary">Learn now!</button>
+                <button
+                  onClick={() => handleAddToCart(item)}
+                  className="btn btn-primary"
+                >
+                  Learn now!
+                </button>
               </div>
             </div>
           </div>
