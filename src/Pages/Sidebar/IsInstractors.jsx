@@ -6,7 +6,7 @@ const IsInstractors = () => {
   return (
     <>
       <li>
-        <NavLink to="/dashboard/userhome">
+        <NavLink to="/dashboard">
           <FaHome></FaHome> Instractor Home
         </NavLink>
       </li>
@@ -16,7 +16,7 @@ const IsInstractors = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/">
+        <NavLink to="/dashboard/myclass">
           <FaWallet></FaWallet> My Added Classes
         </NavLink>
       </li>

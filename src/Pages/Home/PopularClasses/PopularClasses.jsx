@@ -12,27 +12,24 @@ const PopularClasses = () => {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    // fetch("http://localhost:5000/class")
-    fetch("classes.json")
+    fetch("http://localhost:5000/class")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
       });
   }, []);
 
-  const handleAddToCart = (item) => {
-    console.log(item);
+  const handleSelectClass = (item) => {
     if (user && user.email) {
-      const { _id, Name, Image, price, AvailableSeats } = item;
+      const { _id, name, image, price } = item;
       const classItem = {
         menuItemId: _id,
-        Name,
-        Image,
+        name,
+        image,
         price,
-        AvailableSeats,
         email: user.email,
       };
-      fetch("http://localhost:5000/class", {
+      fetch("http://localhost:5000/bookmark", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -46,7 +43,7 @@ const PopularClasses = () => {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Food added on the cart.",
+              title: "Class Selected Succesfully.",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -76,13 +73,12 @@ const PopularClasses = () => {
         {data.map((item) => (
           <div key={item._id} className="card w-96 glass mx-auto">
             <figure>
-              <img className="" src={item.Image} alt="Class!" />
+              <img className="" src={item.image} alt="Class!" />
             </figure>
             <div className="card-body">
               <div className="flex justify-evenly">
                 <p className="font-light flex items-center gap-2">
                   <FaAtlas />
-                  {item.AvailableSeats} Lessons{" "}
                 </p>
                 <p className="font-light flex items-center gap-2">
                   <FaRegClock />
@@ -93,7 +89,7 @@ const PopularClasses = () => {
                 </p>
               </div>
 
-              <p className="text-2xl font-mono">{item.Name}</p>
+              <p className="text-2xl font-mono">{item.name}</p>
 
               <div className="rating">
                 <input
@@ -126,11 +122,11 @@ const PopularClasses = () => {
               <div className="flex justify-between">
                 {" "}
                 <h2 className="text-lg font-serif">
-                  Available Seats: {item.AvailableSeats}
+                  Available Seats: {item.seats}
                 </h2>
                 <h2 className="flex items-center text-2xl text-blue-700">
                   <FaDollarSign />
-                  {item.Price}
+                  {item.price}
                 </h2>
               </div>
 
@@ -141,14 +137,14 @@ const PopularClasses = () => {
                     <img src={item.Image} />
                   </div>
                   <h2 className="ml-2 text-lg hover:text-blue-600 font-sans">
-                    {item.InstructorName}
+                    {item.insName}
                   </h2>
                 </div>
                 <button
-                  onClick={() => handleAddToCart(item)}
+                  onClick={() => handleSelectClass(item)}
                   className="btn btn-primary"
                 >
-                  Learn now!
+                  Selected!
                 </button>
               </div>
             </div>

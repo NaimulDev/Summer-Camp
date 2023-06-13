@@ -2,7 +2,7 @@ import React from "react";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
-const VITE_IMAGE_KEY = import.meta.env.VITE_Image_Upload_token;
+const VITE_IMAGE_KEY = import.meta.env.VITE_IMAGE_KEY;
 const AddClasses = () => {
   // const handleClasses = (event) => {
   //   event.preventDefault();
@@ -64,17 +64,29 @@ const AddClasses = () => {
       .then((imgResponse) => {
         if (imgResponse.success) {
           const imgURL = imgResponse.data.display_url;
-          const { name, price, category, recipe } = data;
+          const {
+            name,
+            insName,
+            email,
+            seats,
+            price,
+            category,
+            classDetails,
+            image,
+          } = data;
           const newItem = {
             name,
+            insName,
+            email,
+            seats,
             price: parseFloat(price),
             category,
-            recipe,
+            classDetails,
             image: imgURL,
           };
           console.log(newItem);
-          axiosSecure.post("/menu", newItem).then((data) => {
-            console.log("after posting new menu item", data.data);
+          axiosSecure.post("/class", newItem).then((data) => {
+            console.log("after posting new class item", data.data);
             if (data.data.insertedId) {
               reset();
               Swal.fire({
@@ -223,7 +235,7 @@ const AddClasses = () => {
             </label>
             <input
               type="text"
-              placeholder="Recipe Name"
+              placeholder="Class Name"
               {...register("name", { required: true, maxLength: 120 })}
               className="input input-bordered w-full "
             />
@@ -234,8 +246,8 @@ const AddClasses = () => {
             </label>
             <input
               type="text"
-              placeholder="Recipe Name"
-              {...register("name", { required: true, maxLength: 120 })}
+              placeholder="Instructor Name"
+              {...register("insName", { required: true, maxLength: 120 })}
               className="input input-bordered w-full "
             />
           </div>
@@ -246,9 +258,9 @@ const AddClasses = () => {
               </span>
             </label>
             <input
-              type="text"
-              placeholder="Recipe Name"
-              {...register("name", { required: true, maxLength: 120 })}
+              type="email"
+              placeholder="Email"
+              {...register("email", { required: true, maxLength: 120 })}
               className="input input-bordered w-full "
             />
           </div>
@@ -259,7 +271,7 @@ const AddClasses = () => {
             <input
               type="text"
               placeholder="Ablable Seats"
-              {...register("name", { required: true, maxLength: 120 })}
+              {...register("seats", { required: true, maxLength: 120 })}
               className="input input-bordered w-full "
             />
           </div>
@@ -297,7 +309,7 @@ const AddClasses = () => {
               <span className="label-text">Class Details</span>
             </label>
             <textarea
-              {...register("recipe", { required: true })}
+              {...register("classDetails", { required: true })}
               className="textarea textarea-bordered h-24"
               placeholder="Bio"
             ></textarea>

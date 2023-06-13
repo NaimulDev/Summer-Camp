@@ -6,7 +6,7 @@ export const useAdmin = () => {
   const { user, loading } = useAuth();
   const [axiosSecure] = useAxiosSecure();
   // use axios secure with react query
-  const { data: isAdmin, isLoading: isInstractorLoading } = useQuery({
+  const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
     queryKey: ["isAdmin", user?.email],
     enabled: !loading,
     queryFn: async () => {
@@ -14,7 +14,7 @@ export const useAdmin = () => {
       return res.data.admin;
     },
   });
-  return [isAdmin, isInstractorLoading];
+  return [isAdmin, isAdminLoading];
 };
 
 export const useInstractor = () => {
