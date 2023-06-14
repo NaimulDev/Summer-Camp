@@ -118,23 +118,6 @@ export const router = createBrowserRouter([
         path: "/dashboard/payment/:id",
         element: <Payment></Payment>,
       },
-      // admin routes
-      // {
-      //   path: 'adminhome',
-      //   element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
-      // },
-      // {
-      //   path: 'allusers',
-      //   element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
-      // },
-      // {
-      //   path: 'addItem',
-      //   element: <AdminRoute><AddItem></AddItem></AdminRoute>
-      // },
-      // {
-      //   path: 'manageitems',
-      //   element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
-      // }
     ],
   },
 ]);
