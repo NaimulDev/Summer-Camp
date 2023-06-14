@@ -13,7 +13,7 @@ const PopularClasses = () => {
   const location = useLocation();
 
   useEffect(() => {
-    fetch("http://localhost:5000/class")
+    fetch("https://pallikoodam-server.vercel.app/class")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -30,7 +30,7 @@ const PopularClasses = () => {
         price,
         email: user.email,
       };
-      fetch("http://localhost:5000/bookmark", {
+      fetch("https://pallikoodam-server.vercel.app/bookmark", {
         method: "POST",
         headers: {
           "content-type": "application/json",

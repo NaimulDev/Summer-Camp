@@ -18,6 +18,8 @@ import ClassesPages from "../Pages/Home/ClassesPages/ClassesPages";
 import Payment from "../Pages/Payment/Payment";
 import UserHome from "../Pages/Home/DashboardPages/UserPanel/UserHome/UserHome";
 import Instructors from "../Pages/Home/InstructorsPages/Instructors";
+import UserPayHistory from "../Pages/Home/DashboardPages/UserPanel/UserPayHistory/UserPayHistory";
+import AdminPayHistory from "../Pages/Home/DashboardPages/AdminPanel/AdminPayHistory/AdminPayHistory";
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +76,14 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      {
+        path: "/dashboard/payhistory",
+        element: (
+          <AdminRoute>
+            <AdminPayHistory />
+          </AdminRoute>
+        ),
+      },
       // INstructor
       {
         path: "inshome",
@@ -101,8 +111,8 @@ export const router = createBrowserRouter([
         element: <SelectedClass />,
       },
       {
-        path: "payhistory",
-        element: <MyAddedClass />,
+        path: "/dashboard/payhistory",
+        element: <UserPayHistory />,
       },
       {
         path: "/dashboard/payment/:id",

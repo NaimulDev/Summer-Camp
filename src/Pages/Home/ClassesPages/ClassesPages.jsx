@@ -7,7 +7,7 @@ const ClassesPages = () => {
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/class", {
+    fetch("https://pallikoodam-server.vercel.app/class", {
       headers: {
         authorization: `bearer ${token}`,
       },
@@ -20,12 +20,12 @@ const ClassesPages = () => {
         setClasses(approvedClasses);
       });
   }, []);
-  console.log(classes);
+
   return (
-    <div className="flex-container">
+    <div className="flex flex-wrap">
       {classes &&
         classes.map((classItem, idx) => {
-          return <ClassCart key={idx} classItem={classItem}></ClassCart>;
+          return <ClassCart key={idx} classItem={classItem} />;
         })}
     </div>
   );

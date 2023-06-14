@@ -83,7 +83,7 @@ const ManageClasses = () => {
     // const fed = e.target.value;
     // console.log(fed);
 
-    fetch(`http://localhost:5000/feedback/${_id}`, {
+    fetch(`https://pallikoodam-server.vercel.app/feedback/${_id}`, {
       method: "PATCH",
       headers: {
         authorization: `bearer ${token}`,

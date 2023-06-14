@@ -48,7 +48,7 @@ const Signup = () => {
           .then((result) => {
             updateUserProfile(data.name, imageAdders).then(() => {
               axios
-                .post("http://localhost:5000/users", {
+                .post("https://pallikoodam-server.vercel.app/users", {
                   name: data.name,
                   email: data.email,
                   image: imageAdders,

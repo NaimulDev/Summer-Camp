@@ -11,7 +11,7 @@ const MyAddedClass = () => {
   return (
     <div>
       <Helmet>
-        <title>SK Academy || All Classes</title>
+        <title>Pallikoodam || All Classes</title>
       </Helmet>
       {/* <DashSectionTitle
         name="Classes"

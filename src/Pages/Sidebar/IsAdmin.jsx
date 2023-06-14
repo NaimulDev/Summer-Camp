@@ -22,6 +22,11 @@ const IsAdmin = () => {
           <FaUsers></FaUsers> Manage Users
         </NavLink>
       </li>
+      <li>
+        <NavLink to="/dashboard/payhistory">
+          <FaUsers></FaUsers> Payment History
+        </NavLink>
+      </li>
     </div>
   );
 };
