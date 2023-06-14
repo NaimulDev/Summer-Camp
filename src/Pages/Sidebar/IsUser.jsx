@@ -14,13 +14,9 @@ const IsUser = () => {
           <FaCalendarAlt></FaCalendarAlt> My Selected Class
         </NavLink>
       </li>
+
       <li>
-        <NavLink to="/dashboard/payhistory">
-          <FaWallet></FaWallet> Payment History
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/enroll">
+        <NavLink to="/dashboard/enroll">
           <FaWallet></FaWallet>My Enroll Classes
         </NavLink>
       </li>

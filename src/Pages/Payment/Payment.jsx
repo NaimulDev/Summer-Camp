@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import CheckOutFrom from "./CheckOutFrom";
 // import CheckOutFrom from "./CheckOutFrom";
-// import DashSectionTitle from "../../../../component/DashboardSectionTitle";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_KEY);
 console.log(stripePromise);

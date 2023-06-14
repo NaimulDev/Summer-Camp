@@ -1,6 +1,6 @@
-import React from "react";
-import { userEmailToPayment } from "../../../../../hooks/usePayment";
 import { Helmet } from "react-helmet-async";
+
+import { userEmailToPayment } from "../../../../../hooks/usePayment";
 
 const UserPayHistory = () => {
   const [payments] = userEmailToPayment();
@@ -8,57 +8,36 @@ const UserPayHistory = () => {
   return (
     <div>
       <Helmet>
-        <title>Pallikoodam || Payment History</title>
+        <title>Pallikoodam || My Enrol</title>
       </Helmet>
-      {/* <DashSectionTitle
-                name='Payment'
-                title='Payment History'
-                subTitle='All users added Sport and users Enrol the Sports Class!'
-            /> */}
-      <div
-        data-aos="fade-down"
-        data-aos-easing="linear"
-        data-aos-duration="1500"
-        className="overflow-x-auto"
-      >
-        <table className="table table-zebra">
+
+      <div className="overflow-x-auto">
+        <table className="table">
           {/* head */}
           <thead>
-            <tr className="text-center text-lg">
+            <tr className="text-lg">
               <th>Class</th>
-              <th>userEmail</th>
-              <th>Ins.email</th>
-              <th>Price</th>
-              <th>Date</th>
-              <th>transactionId</th>
+              <th>InstructorEmail</th>
+              <th>amount</th>
+              <th>TransitionId</th>
+              <th>payment</th>
             </tr>
           </thead>
           <tbody>
-            {payments.map((payment) => (
-              <tr key={payment._id}>
+            {payments.map((pay) => (
+              <tr key={pay?._id}>
                 <td>
-                  {" "}
-                  <span>{payment?.name}</span>
+                  <span className="text-base font-medium">
+                    {pay?.className}
+                  </span>
                 </td>
+                <td>{pay?.insEmail}</td>
+                <td>${pay?.price}</td>
+                <td>${pay?.transactionId}</td>
                 <td>
-                  {" "}
-                  <span>{payment?.email}</span>
-                </td>
-                <td>
-                  {" "}
-                  <span>{payment?.insName}</span>
-                </td>
-                <td>
-                  {" "}
-                  <span>{payment?.price}</span>
-                </td>
-                <td>
-                  {" "}
-                  <span>{payment?.date}</span>
-                </td>
-                <td>
-                  {" "}
-                  <span>{payment?.transactionId}</span>
+                  <p className=" text-sm text-green-500 bg-slate-200 text-center py-2 rounded-lg">
+                    confirm
+                  </p>
                 </td>
               </tr>
             ))}
