@@ -3,42 +3,11 @@ import React, { useState } from "react";
 import { FaPaypal, FaRegTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
-// import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
+import { BookMarkEmailFetch } from "../../../../../hooks/useClasses";
 
 const SelectedClass = () => {
-  // const [axiosSecure] = useAxiosSecure();
-  // const { data: users = [], refetch } = useQuery(["users"], async () => {
-  //   const res = await axiosSecure.get("/bookmark");
-  //   return res.json();
-  // });
-  const token = localStorage.getItem("access-token");
-  const [classes, setClasses] = useState();
-  const { data: users = [] } = useQuery(
-    ["user", users?.email],
-    async () => {
-      const res = await fetch(
-        `http://localhost:5000/bookmark/${users?.email}`,
-        {
-          headers: {
-            authorization: `bearer ${token}`, // Fixed the bearer token syntax
-          },
-        }
-      );
-      return res.json();
-    },
-    {
-      enabled: !loading,
-    }
-  );
+  const [bookMark, refetch] = BookMarkEmailFetch();
 
-  useEffect(() => {
-    if (users && users.length > 0) {
-      // Added a null check for 'users'
-      setClasses(users);
-    }
-  }, [users]);
-
-  console.log(users);
   const handleDelete = (user) => {
     Swal.fire({
       title: "Are you sure?",
@@ -79,7 +48,7 @@ const SelectedClass = () => {
             </tr>
           </thead>
           <tbody>
-            {classes.map((user, index) => (
+            {bookMark.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>
@@ -105,7 +74,7 @@ const SelectedClass = () => {
                 </td>
                 <td>
                   <Link
-                    to={`/dashboard/${user?._id}`}
+                    to={`/dashboard/payment/${user?._id}`}
                     className="btn bg-blue-500 "
                   >
                     <FaPaypal />

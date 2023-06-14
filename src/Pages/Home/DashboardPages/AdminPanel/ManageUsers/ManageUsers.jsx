@@ -1,4 +1,3 @@
-// import { useQuery } from "@tanstack/react-query";
 // import DashSectionTitle from "../../../component/DashboardSectionTitle";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";

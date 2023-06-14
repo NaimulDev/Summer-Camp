@@ -6,7 +6,7 @@ const IsInstractors = () => {
   return (
     <>
       <li>
-        <NavLink to="/dashboard">
+        <NavLink to="/dashboard/inshome">
           <FaHome></FaHome> Instractor Home
         </NavLink>
       </li>
@@ -18,11 +18,6 @@ const IsInstractors = () => {
       <li>
         <NavLink to="/dashboard/myclass">
           <FaWallet></FaWallet> My Added Classes
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/">
-          <FaWallet></FaWallet> Total Enrolled Students
         </NavLink>
       </li>
     </>

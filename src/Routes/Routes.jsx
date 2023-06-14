@@ -4,7 +4,6 @@ import Home from "../Pages/Home/Home/Home";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Signup from "../Pages/Signup/Signup";
 import Login from "../Pages/Login/Login";
-import PopularClasses from "../Pages/Home/PopularClasses/PopularClasses";
 import PopularInstructors from "../Pages/Home/PopularInstructors/PopularInstructors";
 import Dashboard from "../Layout/Dashboard";
 import AddClasses from "../Pages/Home/DashboardPages/IsInstractorPanel/AddClasses";
@@ -13,6 +12,10 @@ import AdminRoute from "./AdminRoute";
 import MyAddedClass from "../Pages/Home/DashboardPages/IsInstractorPanel/MyAddedClass";
 import SelectedClass from "../Pages/Home/DashboardPages/UserPanel/SelectedClass/SelectedClass";
 import ManageClasses from "../Pages/Home/DashboardPages/AdminPanel/ManageClasses/ManageClasses";
+import AdminHome from "../Pages/Home/DashboardPages/AdminPanel/AdminHome/AdminHome";
+import InstructorHome from "../Pages/Home/DashboardPages/IsInstractorPanel/InstructorHome/InstructorHome";
+import ClassesPages from "../Pages/Home/ClassesPages/ClassesPages";
+import Payment from "../Pages/Payment/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +33,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/classes",
-        element: <PopularClasses />,
+        element: <ClassesPages />,
       },
 
       {
@@ -49,9 +52,10 @@ export const router = createBrowserRouter([
     element: <Dashboard></Dashboard>,
     children: [
       {
-        path: "addclass",
-        element: <AddClasses />,
+        path: "adminhome",
+        element: <AdminHome />,
       },
+
       {
         path: "manageusers",
         element: (
@@ -68,10 +72,24 @@ export const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
+      // INstructor
+      {
+        path: "inshome",
+        element: <InstructorHome />,
+      },
+      {
+        path: "addclass",
+        element: <AddClasses />,
+      },
       {
         path: "myclass",
         element: <MyAddedClass />,
       },
+      {
+        path: "enrolled",
+        element: <MyAddedClass />,
+      },
+      // User
       {
         path: "selectclass",
         element: <SelectedClass />,
@@ -80,10 +98,10 @@ export const router = createBrowserRouter([
         path: "payhistory",
         element: <MyAddedClass />,
       },
-      // {
-      //   path:'payment',
-      //   element: <Payment></Payment>
-      // },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment></Payment>,
+      },
       // admin routes
       // {
       //   path: 'adminhome',
