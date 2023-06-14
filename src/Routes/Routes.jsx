@@ -16,6 +16,8 @@ import AdminHome from "../Pages/Home/DashboardPages/AdminPanel/AdminHome/AdminHo
 import InstructorHome from "../Pages/Home/DashboardPages/IsInstractorPanel/InstructorHome/InstructorHome";
 import ClassesPages from "../Pages/Home/ClassesPages/ClassesPages";
 import Payment from "../Pages/Payment/Payment";
+import UserHome from "../Pages/Home/DashboardPages/UserPanel/UserHome/UserHome";
+import Instructors from "../Pages/Home/InstructorsPages/Instructors";
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +31,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/instructors",
-        element: <PopularInstructors />,
+        element: <Instructors />,
       },
       {
         path: "/classes",
@@ -90,6 +92,10 @@ export const router = createBrowserRouter([
         element: <MyAddedClass />,
       },
       // User
+      {
+        path: "userhome",
+        element: <UserHome />,
+      },
       {
         path: "selectclass",
         element: <SelectedClass />,

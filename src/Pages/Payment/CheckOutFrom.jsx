@@ -25,7 +25,7 @@ const CheckOutFrom = ({ payment }) => {
       });
     }
   }, [price, axiosSecure]);
-
+  console.log(price, axiosSecure);
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!stripe || !elements) {
@@ -116,7 +116,7 @@ const CheckOutFrom = ({ payment }) => {
           }}
         />
         <button
-          className="bg-main_color py-2 px-5 text-white text-base rounded-xl mt-3"
+          className="bg-main_color bg-red-500 py-2 px-5 text-white text-base rounded-xl mt-3"
           type="submit"
           disabled={!stripe || !clientSecret || processing}
         >

@@ -11,6 +11,7 @@ const PopularClasses = () => {
   const [, refetch] = useCart();
   const navigate = useNavigate();
   const location = useLocation();
+
   useEffect(() => {
     fetch("http://localhost:5000/class")
       .then((res) => res.json())
@@ -23,7 +24,7 @@ const PopularClasses = () => {
     if (user && user.email) {
       const { _id, name, image, price } = item;
       const classItem = {
-        menuItemId: _id,
+        classId: _id,
         name,
         image,
         price,
@@ -43,7 +44,7 @@ const PopularClasses = () => {
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Class Selected Succesfully.",
+              title: "Class Selected Successfully.",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -64,17 +65,18 @@ const PopularClasses = () => {
       });
     }
   };
+
   return (
-    <>
-      <div>
-        <h2 className=" text-5xl text-center my-10">Explore top courses</h2>
-      </div>
-      <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 mx-20">
-        {data.map((item) => (
-          <div key={item._id} className="card w-96 glass mx-auto">
+    <div className="container mx-auto px-4 my-14">
+      <h2 className="text-5xl text-center my-10">Explore top courses</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {data.slice(0, 6).map((item) => (
+          <div key={item._id} className="card w-full md:w-96 glass mx-auto">
             <figure>
-              <img className="" src={item.image} alt="Class!" />
+              <img className="w-full" src={item.image} alt="Class!" />
             </figure>
+
             <div className="card-body">
               <div className="flex justify-evenly">
                 <p className="font-light flex items-center gap-2">
@@ -119,8 +121,8 @@ const PopularClasses = () => {
                   className="mask mask-star-2 bg-orange-400"
                 />
               </div>
+
               <div className="flex justify-between">
-                {" "}
                 <h2 className="text-lg font-serif">
                   Available Seats: {item.seats}
                 </h2>
@@ -131,10 +133,11 @@ const PopularClasses = () => {
               </div>
 
               <div className="divider"></div>
+
               <div className="card-actions justify-between">
-                <div tabIndex={0} className=" flex items-center avatar">
+                <div tabIndex={0} className="flex items-center avatar">
                   <div className="w-10 rounded-full">
-                    <img src={item.Image} />
+                    <img src={item.Image} alt="Instructor" />
                   </div>
                   <h2 className="ml-2 text-lg hover:text-blue-600 font-sans">
                     {item.insName}
@@ -151,7 +154,7 @@ const PopularClasses = () => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

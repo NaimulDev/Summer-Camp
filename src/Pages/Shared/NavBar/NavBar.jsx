@@ -146,7 +146,7 @@ function NavBar() {
                         />
                       </div>
                       <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                        TT
+                        Pallkoodam
                       </span>
                     </Link>
                   </div>
@@ -181,12 +181,22 @@ function NavBar() {
 
                     <li>
                       <Link
-                        to="/blogs"
-                        aria-label="Blogs"
-                        title="Blogs"
+                        to="/dashboard"
+                        aria-label="dashboard"
+                        title="dashboard"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Blogs
+                        Dashboard
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/class"
+                        aria-label="class"
+                        title="class"
+                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
+                      >
+                        Class
                       </Link>
                     </li>
 

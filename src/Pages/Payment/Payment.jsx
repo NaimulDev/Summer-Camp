@@ -25,7 +25,7 @@ const Payment = () => {
   return (
     <>
       <Helmet>
-        <title>SK Academy || Payment</title>
+        <title>Pallikoodam || Payment</title>
       </Helmet>
       {/* <DashSectionTitle
                 name='payment'
